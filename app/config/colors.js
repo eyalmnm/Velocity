@@ -6,7 +6,7 @@ export default {
     // Welcome Screen Gradient colors
     wcGrdFromColor: "#222455",
     wcGrdMidColor: "#111111",
-    wcGrdToColor: "#ba5663ff",
+    wcGrdToColor: "#000",
 
     // Welcome Message Color
     welcomeMsgTextColor: "#5663ff",

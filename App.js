@@ -1,23 +1,25 @@
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation'
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import WelcomeScreen from "./app/screens/WelcomeScreen";
+import { Text } from 'react-native';
+import Welcome from './app/screens/WelcomeScreen'
 
-export default function App() {
-  console.log("in app");
-  return (
-    <WelcomeScreen />
-  );
-}
+// https://stackoverflow.com/questions/51129444/how-to-hide-header-of-createstacknavigator-on-react-native
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-    backgroundColor: 'white',
-    flexDirection: "row",
-    justifyContent: "center",  // Main
-    alignItems: "flex-end", // Secondary
-    flexWrap: "wrap",
-    alignContent: "center",  // Only when using flexWrap
+const AppNavigator = createStackNavigator({
+  Welcome: {
+    screen: Welcome,
+    navigationOptions: {
+      header: null,
+    },
   },
-});
+  // Movies: { screen: Movies },
+  // MoviesDetails: { screen: MoviesDetails },
+},
+  {
+    initialRouteName: 'Welcome'
+  });
+
+const App = createAppContainer(AppNavigator)
+
+export default App;
