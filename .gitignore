@@ -57,3 +57,10 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+.buckconfig
+.flowconfig
+.gitattributes
+.watchmanconfig
+.eslintrc.js
+.prettierrc.js
+.vscode/launch.json
