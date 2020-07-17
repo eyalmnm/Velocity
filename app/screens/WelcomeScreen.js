@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { ImageBackground, StyleSheet, View, Image, Text } from 'react-native';
 import colors from "../config/colors";
+import constants from "../config/constants";
 import LinearGradient from 'react-native-linear-gradient';
 
 function WelcomeScreen(props) {
-    setTimeout(() => { props.navigation.navigate("LoginScreen") }, 3000);
+    setTimeout(() => { props.navigation.navigate("LoginScreen") }, constants.welcomeDisplayDuration);
     return (
         <View style={styles.container}>
             <ImageBackground
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     logoImage: {
-        bottom: 130,
+        bottom: 140,
     },
     linearGradient: {
         flex: 1,
@@ -57,12 +58,13 @@ const styles = StyleSheet.create({
     },
     message: {
         color: colors.welcomeMsgTextColor,
-        width: "80%",
-        fontSize: 27,
+        width: "65%",
+        fontSize: 25,
         textAlign: 'center',
         textAlignVertical: "center",
-        bottom: 100,
-        fontWeight: "normal"
+        bottom: 110,
+        fontWeight: "normal",
+        fontFamily: "Montserrat-Regular"
     },
 })
 
