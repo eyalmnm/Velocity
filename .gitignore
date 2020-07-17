@@ -64,3 +64,4 @@ buck-out/
 .eslintrc.js
 .prettierrc.js
 .vscode/launch.json
+app/theKey.txt
