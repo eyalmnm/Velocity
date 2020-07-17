@@ -4,11 +4,13 @@ import colors from "../config/colors";
 import LinearGradient from 'react-native-linear-gradient';
 
 function WelcomeScreen(props) {
+    setTimeout(() => { props.navigation.navigate("LoginScreen") }, 3000);
     return (
         <View style={styles.container}>
             <ImageBackground
+                // resizeMode="contain"
                 style={styles.background}
-                source={require('../assets/background.jpg')} >
+                source={require('../assets/background.png')} >
                 <LinearGradient
                     colors={[colors.wcGrdFromColor, colors.wcGrdMidColor, colors.wcGrdToColor]}
                     style={styles.linearGradient}
@@ -21,12 +23,11 @@ function WelcomeScreen(props) {
                     numberOfLines={2}
                     ellipsizeMode='tail'
                     style={styles.message}
-                >Momentum for a healthy lifestyle.</Text>
+                >Momentum for a healthy lifestyle</Text>
             </ImageBackground>
         </View>
 
     );
-    // setTimeout(() => { this.props.navigation.navigate("Home") }, 3000);
 }
 
 const styles = StyleSheet.create({
@@ -42,24 +43,22 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
         alignItems: 'center',
     },
+    logoImage: {
+        bottom: 130,
+    },
     linearGradient: {
         flex: 1,
         width: "100%",
         height: "100%",
-        opacity: 0.85,
+        opacity: 0.9,
         position: 'absolute',
         top: 0,
         left: 0,
     },
-    logoImage: {
-        width: 80,
-        height: 80,
-        bottom: 130,
-    },
     message: {
         color: colors.welcomeMsgTextColor,
         width: "80%",
-        fontSize: 30,
+        fontSize: 27,
         textAlign: 'center',
         textAlignVertical: "center",
         bottom: 100,

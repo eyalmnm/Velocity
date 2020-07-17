@@ -10,4 +10,9 @@ export default {
 
     // Welcome Message Color
     welcomeMsgTextColor: "#5663ff",
+
+    // Login Screen Gradient colors 
+    lgGrdFromColor: "#000",
+    lgGrdMidColor: "#080808",
+    lgGrdToColor: "#692d2d2d",
 }
