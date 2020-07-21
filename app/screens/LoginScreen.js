@@ -32,7 +32,7 @@ function LoginScreen(props) {
 
     function onAuthStateChanged(user) {
         setUserInfo(user);
-        console.log("**********************  " + user);
+        console.log("********************** onAuthStateChanged " + user);
         if (user) {
             setloggedIn(true);
             setGoogleToken(user.accessToken);
@@ -47,7 +47,9 @@ function LoginScreen(props) {
             const { accessToken, idToken } = await GoogleSignin.signIn();
             setLoggedIn(true);
             const credential = auth.GoogleAuthProvider.credetial(idToken, accessToken);
+            console.log("********************** googleSignInHandler 1 ");
             await auth().signInWithCredetial(credetial);
+            console.log("********************** googleSignInHandler 2 ");
         } catch (error) {
             if (error.code === statusCodes.SIGN_IN_CANCELLED) {
                 alert('Cancel');
