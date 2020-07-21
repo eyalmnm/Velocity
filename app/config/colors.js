@@ -1,6 +1,8 @@
 export default {
 
     // App Colors
+    primary: "#f00",
+    loadingSpinnerColor: "#5663ff",
 
 
     // Welcome Screen Gradient colors

@@ -1,5 +1,9 @@
 export default {
 
     // Welcome Screen Constants
-    welcomeDisplayDuration: 5000,
+    welcomeDisplayDuration: 10000,
+
+    // Login Screen Constants
+    googleWebClientId: 'XXXXXXXXX',
+    googleIosClientId: 'XXXXXXXXX',
 }

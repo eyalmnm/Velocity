@@ -20,6 +20,31 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>&lt;?xml</string>
+				<string>version="1.0"</string>
+				<string>encoding="UTF-8"?&gt;
+&lt;!DOCTYPE</string>
+				<string>plist</string>
+				<string>PUBLIC</string>
+				<string>"-//Apple//DTD</string>
+				<string>PLIST</string>
+				<string>1.0//EN"</string>
+				<string>"http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist</string>
+				<string>version="1.0"&gt;
+&lt;string&gt;com.googleusercontent.apps.77554252155-cp7gopoenodu1qjoh8o2qh02k675p6ra&lt;/string&gt;
+&lt;/plist&gt;
+</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -38,7 +63,16 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>Montserrat-SemiBold.ttf</string>
+		<string>MontserratBold.ttf</string>
+		<string>MontserratRegular.ttf</string>
+		<string>MontserratSemiBold.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -53,14 +87,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Montserrat-Bold.ttf</string>
-		<string>Montserrat-Regular.ttf</string>
-		<string>Montserrat-SemiBold.ttf</string>
-		<string>MontserratBold.ttf</string>
-		<string>MontserratRegular.ttf</string>
-		<string>MontserratSemiBold.ttf</string>
-	</array>
 </dict>
 </plist>

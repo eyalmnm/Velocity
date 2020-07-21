@@ -5,6 +5,7 @@ import constants from "../config/constants";
 import LinearGradient from 'react-native-linear-gradient';
 
 function WelcomeScreen(props) {
+    console.log('In Welcome Screen');
     setTimeout(() => { props.navigation.navigate("LoginScreen") }, constants.welcomeDisplayDuration);
     return (
         <View style={styles.container}>

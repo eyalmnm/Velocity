@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "77554252155",
+    "firebase_url": "https://velocity-95e27.firebaseio.com",
+    "project_id": "velocity-95e27",
+    "storage_bucket": "velocity-95e27.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77554252155:android:1f365c440d9128141de5de",
+        "android_client_info": {
+          "package_name": "com.velocity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77554252155-514bs90rv6ml1b8fdgltmf1ijl9jg9nm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.velocity",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "77554252155-13fmtlmdpnofb7hhlj7iss3gpcchbfhp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo1it___vxWRlCgbeViR2udxTqGFyvlN4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77554252155-13fmtlmdpnofb7hhlj7iss3gpcchbfhp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

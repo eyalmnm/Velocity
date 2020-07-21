@@ -1,0 +1,183 @@
+import React, { Component } from 'react';
+import { ImageBackground, StyleSheet, View, Image, Text, ActivityIndicator } from 'react-native';
+import colors from "../config/colors";
+import LinearGradient from 'react-native-linear-gradient';
+import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
+import constants from "../config/constants";
+
+class LoginScreen extends Component {
+    state = {
+        isSigninInProgress: false,
+        loggedIn: false,
+        userInfo: null,
+    }
+
+    componentDidMount() {
+        GoogleSignin.configure({
+            scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+            webClientId: constants.googleWebClientId,
+            offlineAccess: true,
+            iosClientId: constants.googleIosClientId,
+            hostedDomain: '',
+            forceConsentPrompt: true,
+        });
+
+        this.getCurrentUserInfo();
+        if (this.state.loggedIn === true) {
+            this.handleGoogleLoggedIn();
+        }
+    }
+
+    handleGoogleLoggedIn = async () => {
+        console.log('****************** handleGoogleLoggedIn');
+        // TODO Show progress bar
+        let googleToken = GoogleSignin.getTokens();
+        // Sending Token to server
+        let response = this.sendDataToServer(googleToken, null);
+        // TODO Hide Progress bar
+        // TODO Move to next screen
+    }
+
+    googleSignInHandler = async () => {
+        try {
+            this.setState({ isSigninInProgress: true });
+            await GoogleSignin.hasPlayServices();
+            const userInfo = await GoogleSignin.signIn();
+            if (userIsLogedIn.hasOwnProperty('id')) {
+                this.setState({ userInfo: userInfo, loggedIn: true })
+            }
+        } catch (error) {
+            this.setState({ isSigninInProgress: false });
+            if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+
+            } else if (error.code === statusCodes.IN_PROGRESS) {
+
+            } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+
+            } else {
+
+            }
+        }
+    }
+
+    getCurrentUserInfo = async () => {
+        try {
+            const userInfo = await GoogleSignin.signInSilently();
+            if (userIsLogedIn.hasOwnProperty('id')) {
+                this.setState({ userInfo: userInfo, loggedIn: true });
+            }
+        } catch (error) {
+            if (error.code === statusCodes.SIGN_IN_REQUIRED) {
+                this.setState({ loggedIn: false });
+            } else {
+                this.setState({ loggedIn: false });
+            }
+        }
+    }
+
+    sendDataToServer(googleToken, facebookToken) {
+        var data = {
+            "googleToken": googleToken,
+            "facebookToken": facebookToken,
+        }
+        try {
+            fetch("https://....", {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(data)
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    console.log(data)
+                });
+        } catch (error) {
+            console.log(error.body);
+        }
+    }
+
+    renderProgressCircle () {
+        if (this.state.isSigninInProgress) {
+            return (
+                <ActivityIndicator
+                    animating=true color={colors.primary}/>
+            );
+        } else {
+            return null;
+        }
+    }
+
+    render() {
+        if (this.state.loggedIn) {
+            this.handleGoogleLoggedIn();
+        }
+        return (
+            <View style={styles.container}>
+                <ImageBackground
+                    style={styles.background}
+                    source={require('../assets/background.png')} >
+                    <LinearGradient
+                        colors={[colors.lgGrdFromColor, colors.lgGrdMidColor, colors.lgGrdToColor]}
+                        style={styles.linearGradient}
+                        useAngle={true}
+                        angle={0}
+                        angleCenter={{ x: 0.5, y: 0.5 }} />
+                    <Image style={styles.logoImage}
+                        source={require("../assets/logo.png")} />
+
+                    <GoogleSigninButton
+                        style={styles.googleButton}
+                        size={GoogleSigninButton.Size.Wide}
+                        color={GoogleSigninButton.Color.Dark}
+                        disabled={this.state.isSigninInProgress}
+                        onPress={this.googleSignInHandler}
+                    />
+                    if(this.state.isSigninInProgress) {
+                        <ActivityIndicator
+                        animating=true color={colors.primary}/>
+                    }
+                </ImageBackground>
+            </View>
+        );
+    }
+}
+
+
+const styles = StyleSheet.create({
+    background: {
+        flex: 1,
+        width: "100%",
+        height: "100%",
+        justifyContent: "flex-end",
+        alignItems: 'center',
+    },
+    container: {
+        flex: 1,
+        justifyContent: "flex-end",
+        alignItems: 'center',
+    },
+    googleButton: {
+        width: 240,
+        height: 48,
+        bottom: 160,
+    },
+    linearGradient: {
+        flex: 1,
+        width: "100%",
+        height: "100%",
+        opacity: 0.85,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+    },
+    logoImage: {
+        position: "absolute",
+        top: 60,
+    },
+    progress: {
+        margin: 10,
+      },
+})
+
+export default LoginScreen;
