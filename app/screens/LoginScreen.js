@@ -15,8 +15,6 @@ function LoginScreen(props) {
     const [isSigninInProgress, setSigninInProgress] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
     const [userInfo, setuserInfo] = useState([]);
-    const [googleToken, setGoogleToken] = useState(null);
-    const [facebookToken, setFacebookToken] = useState(null);
 
     useEffect(() => {
         GoogleSignin.configure({
@@ -31,12 +29,12 @@ function LoginScreen(props) {
     }, []);
 
     function onAuthStateChanged(user) {
-        setUserInfo(user);
+        setuserInfo(user);
         console.log("********************** onAuthStateChanged " + user);
         if (user) {
             setloggedIn(true);
-            setGoogleToken(user.accessToken);
-            // setGoogleToken(user.idToken);
+            // sendDataToServer(user.accessToken, null);
+            sendDataToServer(user.idToken, null);
         }
     }
 
@@ -80,79 +78,66 @@ function LoginScreen(props) {
         }
     };
 
-    // handleGoogleLoggedIn = async () => {
-    //     // Sending Token to server
-    //     let date = this.sendDataToServer();
-    //     if (data != null) {
-    //         // TODO Move to next screen
-    //     }
-    // }
-
-    // sendDataToServer() {
-    //     let data = {
-    //         "googleToken": this.state.googleToken,
-    //         "facebookToken": this.state.facebookToken,
-    //     }
-    //     try {
-    //         fetch("https://....", {
-    //             method: "POST",
-    //             headers: headers,
-    //             body: JSON.stringify(data)
-    //         })
-    //             .then(function (response) {
-    //                 return response.json();
-    //             })
-    //             .then(function (data) {
-    //                 console.log(data)
-    //             });
-    //     } catch (error) {
-    //         console.log(error.body);
-    //         return null;
-    //     }
-    // }
-
-    render() {
-        if (this.state.loggedIn) {
-            this.handleGoogleLoggedIn();
+    function sendDataToServer(gToken, fToken) {
+        let data = {
+            "googleToken": gToken,
+            "facebookToken": fToken,
         }
-        return (
-            <View style={styles.container}>
-                <ImageBackground
-                    style={styles.background}
-                    source={require('../assets/background.png')} >
-                    <LinearGradient
-                        colors={[colors.lgGrdFromColor, colors.lgGrdMidColor, colors.lgGrdToColor]}
-                        style={styles.linearGradient}
-                        useAngle={true}
-                        angle={0}
-                        angleCenter={{ x: 0.5, y: 0.5 }} />
-                    <Image style={styles.logoImage}
-                        source={require("../assets/logo.png")} />
-
-                    <GoogleSigninButton
-                        style={styles.googleButton}
-                        size={GoogleSigninButton.Size.Wide}
-                        color={GoogleSigninButton.Color.Dark}
-                        disabled={this.state.isSigninInProgress}
-                        onPress={this.googleSignInHandler}
-                    />
-                    {this.state.isSigninInProgress &&
-                        <ActivityIndicator
-                            size='large'  // small
-                            style={styles.progress}
-                            animating={true}
-                            color={colors.loadingSpinnerColor} />
-                    }
-                    {loggedIn && (
-                        <Button
-                            onPress={this.signOut}
-                            title="LogOut"
-                            color="red"></Button>
-                    )}
-                </ImageBackground>
-            </View>
-        );
+        try {
+            fetch("https://....", {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(data)
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    console.log(data)
+                });
+        } catch (error) {
+            console.log(error.body);
+            return null;
+        }
     }
+
+    return (
+        <View style={styles.container}>
+            <ImageBackground
+                style={styles.background}
+                source={require('../assets/background.png')} >
+                <LinearGradient
+                    colors={[colors.lgGrdFromColor, colors.lgGrdMidColor, colors.lgGrdToColor]}
+                    style={styles.linearGradient}
+                    useAngle={true}
+                    angle={0}
+                    angleCenter={{ x: 0.5, y: 0.5 }} />
+                <Image style={styles.logoImage}
+                    source={require("../assets/logo.png")} />
+
+                <GoogleSigninButton
+                    style={styles.googleButton}
+                    size={GoogleSigninButton.Size.Wide}
+                    color={GoogleSigninButton.Color.Dark}
+                    disabled={isSigninInProgress}
+                    onPress={googleSignInHandler}
+                />
+                {isSigninInProgress &&
+                    <ActivityIndicator
+                        size='large'  // small
+                        style={styles.progress}
+                        animating={true}
+                        color={colors.loadingSpinnerColor} />
+                }
+                {loggedIn && (
+                    <Button
+                        onPress={this.signOut}
+                        title="LogOut"
+                        color="red"></Button>
+                )}
+            </ImageBackground>
+        </View>
+    );
 }
 
 

@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "77554252155-514bs90rv6ml1b8fdgltmf1ijl9jg9nm.apps.googleusercontent.com",
+          "client_id": "77554252155-5jgk8paat2efl0c11uk5qdf5bb8eli2l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.velocity",
-            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+            "certificate_hash": "ee4bdd90d7083976d17878f0f99f3482584f8e6f"
           }
         },
         {
@@ -38,6 +38,13 @@
             {
               "client_id": "77554252155-13fmtlmdpnofb7hhlj7iss3gpcchbfhp.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "77554252155-cp7gopoenodu1qjoh8o2qh02k675p6ra.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.Velocity"
+              }
             }
           ]
         }
