@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import { ImageBackground, StyleSheet, View, Image, Text, ActivityIndicator } from 'react-native';
+import { ImageBackground, StyleSheet, View, Image, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
 import colors from "../config/colors";
 import LinearGradient from 'react-native-linear-gradient';
 import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
@@ -114,7 +114,12 @@ function LoginScreen(props) {
                     angleCenter={{ x: 0.5, y: 0.5 }} />
                 <Image style={styles.logoImage}
                     source={require("../assets/logo.png")} />
-
+                <TouchableOpacity 
+                    style={styles.fbButton}
+                    disabled={isSigninInProgress}>
+                    <Text style={styles.fbButtonText}
+                        >Fb Login Button</Text>
+                </TouchableOpacity>
                 <GoogleSigninButton
                     style={styles.googleButton}
                     size={GoogleSigninButton.Size.Wide}
@@ -153,6 +158,19 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "flex-end",
         alignItems: 'center',
+    },
+    fbButton: {
+        width: 232,
+        height: 38,
+        bottom: 170,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#3b5998',
+    },
+    fbButtonText: {
+        fontWeight: 'bold',
+        fontSize: 14,
+        color: '#F2F3F4',
     },
     googleButton: {
         width: 240,
