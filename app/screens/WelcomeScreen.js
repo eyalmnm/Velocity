@@ -3,10 +3,38 @@ import { ImageBackground, StyleSheet, View, Image, Text } from 'react-native';
 import colors from "../config/colors";
 import constants from "../config/constants";
 import LinearGradient from 'react-native-linear-gradient';
+import DefaultPreference from 'react-native-default-preference';
+import { continueStatement } from '@babel/types';
+
+// Ref: https://github.com/kevinresol/react-native-default-preference
+
 
 function WelcomeScreen(props) {
     console.log('In Welcome Screen');
-    setTimeout(() => { props.navigation.navigate("LoginScreen") }, constants.welcomeDisplayDuration);
+    let token = null;
+    let type = null;
+    DefaultPreference.get(constants.loginToken).then(function (loginToken) {
+        console.log('*** My Key token : ' + loginToken);
+        if (loginToken != null) {
+            token = loginToken;
+            DefaultPreference.get(constants.loginType).then(function (loginType) {
+                if (loginType != null) {
+                    type = loginToken;
+                } else {
+                    DefaultPreference.clearMultiple([container.loginToken, constants.loginType]);
+                    token = null;
+                    type = null;
+                }
+            });
+
+        }
+    });
+    console.log('My Key token : ' + JSON.stringify(token));
+    setTimeout(() => {
+        (token == null || type == null) ?
+            props.navigation.navigate("LoginScreen") :
+            props.navigation.navigate("DiscoverScreen");
+    }, constants.welcomeDisplayDuration);
     return (
         <View style={styles.container}>
             <ImageBackground

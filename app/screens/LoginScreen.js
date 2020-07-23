@@ -5,6 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
 import constants from "../config/constants";
 import auth from '@react-native-firebase/auth';
+import { constant } from '../../../../../../../Library/Caches/typescript/2.6/node_modules/@types/async';
 
 // Ref: https://www.freecodecamp.org/news/google-login-with-react-native-and-firebase/
 // Ref: https://medium.com/@gilshaan/react-native-hooks-how-to-use-usestate-and-useeffect-3a10fd3e760c
@@ -33,8 +34,10 @@ function LoginScreen(props) {
         console.log("********************** onAuthStateChanged " + user);
         if (user) {
             setloggedIn(true);
-            // sendDataToServer(user.accessToken, null);
-            sendDataToServer(user.idToken, null);
+            let results = sendDataToServer(user.idToken, null);
+            if (results != null) {
+                saveToken(user.idToken, "GOOGLE");
+            }
         }
     }
 
@@ -78,6 +81,11 @@ function LoginScreen(props) {
         }
     };
 
+    function saveToken(loginToken, loginType) {
+        DefaultPreference.set(constant.loginToken, loginToken);
+        DefaultPreference.set(constant.loginType, loginType);
+    }
+
     function sendDataToServer(gToken, fToken) {
         let data = {
             "googleToken": gToken,
@@ -114,11 +122,11 @@ function LoginScreen(props) {
                     angleCenter={{ x: 0.5, y: 0.5 }} />
                 <Image style={styles.logoImage}
                     source={require("../assets/logo.png")} />
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={styles.fbButton}
                     disabled={isSigninInProgress}>
                     <Text style={styles.fbButtonText}
-                        >Fb Login Button</Text>
+                    >Fb Login Button</Text>
                 </TouchableOpacity>
                 <GoogleSigninButton
                     style={styles.googleButton}
