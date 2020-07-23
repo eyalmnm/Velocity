@@ -1,7 +1,7 @@
 export default {
 
     // Welcome Screen Constants
-    welcomeDisplayDuration: 5000,
+    welcomeDisplayDuration: 3000,
     loginToken: "login_token",
     loginType: "login_type",
 

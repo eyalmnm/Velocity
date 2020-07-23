@@ -4,7 +4,6 @@ import colors from "../config/colors";
 import constants from "../config/constants";
 import LinearGradient from 'react-native-linear-gradient';
 import DefaultPreference from 'react-native-default-preference';
-import { continueStatement } from '@babel/types';
 
 // Ref: https://github.com/kevinresol/react-native-default-preference
 

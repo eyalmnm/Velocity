@@ -5,7 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
 import constants from "../config/constants";
 import auth from '@react-native-firebase/auth';
-import { constant } from '../../../../../../../Library/Caches/typescript/2.6/node_modules/@types/async';
+import DefaultPreference from 'react-native-default-preference';
 
 // Ref: https://www.freecodecamp.org/news/google-login-with-react-native-and-firebase/
 // Ref: https://medium.com/@gilshaan/react-native-hooks-how-to-use-usestate-and-useeffect-3a10fd3e760c
@@ -40,6 +40,14 @@ function LoginScreen(props) {
             }
         }
     }
+
+    facebookSignInHandler = async () => {
+        console.log("********************** facebookSignInHandler");
+        // Create faked data and move to DiscoveryScreen
+        saveToken("user.idToken", "Facebook");
+        console.log("********************** facebookSignInHandler after saveing");
+        props.navigation.navigate("DiscoverScreen");
+    };
 
     googleSignInHandler = async () => {
         try {
@@ -82,8 +90,8 @@ function LoginScreen(props) {
     };
 
     function saveToken(loginToken, loginType) {
-        DefaultPreference.set(constant.loginToken, loginToken);
-        DefaultPreference.set(constant.loginType, loginType);
+        DefaultPreference.set(constants.loginToken, loginToken);
+        DefaultPreference.set(constants.loginType, loginType);
     }
 
     function sendDataToServer(gToken, fToken) {
@@ -124,7 +132,8 @@ function LoginScreen(props) {
                     source={require("../assets/logo.png")} />
                 <TouchableOpacity
                     style={styles.fbButton}
-                    disabled={isSigninInProgress}>
+                    disabled={isSigninInProgress}
+                    onPress={facebookSignInHandler}>
                     <Text style={styles.fbButtonText}
                     >Fb Login Button</Text>
                 </TouchableOpacity>
