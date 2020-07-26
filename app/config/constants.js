@@ -8,4 +8,7 @@ export default {
     // Login Screen Constants
     googleWebClientId: "77554252155-13fmtlmdpnofb7hhlj7iss3gpcchbfhp.apps.googleusercontent.com",
     googleIosClientId: 'XXXXXXXXX',
+
+    // Discover Screen Constants
+    serverUrl: 'XXXXXXXXX',
 }
