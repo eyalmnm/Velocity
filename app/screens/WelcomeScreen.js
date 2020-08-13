@@ -29,11 +29,11 @@ function WelcomeScreen(props) {
         }
     });
     console.log('My Key token : ' + JSON.stringify(token));
-    // setTimeout(() => {
-    //     (token == null || type == null) ?
-    //         props.navigation.navigate("LoginScreen") :
-    //         props.navigation.navigate("DiscoverScreen");
-    // }, constants.welcomeDisplayDuration);
+    setTimeout(() => {
+        (token == null || type == null) ?
+            props.navigation.navigate("LoginScreen") :
+            props.navigation.navigate("DiscoverScreen");
+    }, constants.welcomeDisplayDuration);
     return (
         <View style={styles.container}>
             <ImageBackground
