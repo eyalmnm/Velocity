@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { ImageBackground, StyleSheet, View, Image, Text, ActivityIndicator } from 'react-native';
 import colors from "../config/colors";
 import constants from "../config/constants";
+import ViewPager from '@react-native-community/viewpager';
+import ActivityPagerCard from '../adapters/ActivityPagerCard';
+
+// Ref: https://github.com/react-native-community/react-native-viewpager
+// Ref: https://stackoverflow.com/questions/45861099/react-native-foreach-loop
+// Ref: http://blog.logicwind.com/implement-responsive-grid-layout-in-react-native-app/
 
 export default class DiscoverScreen extends Component {
 
@@ -22,10 +28,18 @@ export default class DiscoverScreen extends Component {
             this.setState({ isLoading: false })
         }
     }
+
     render() {
         return (
             <View style={styles.container}>
                 <Text>Discover Screen</Text>
+                <ViewPager style={styles.viewPager} initialPage={0}>
+                    {this.state.activitiesList.map((actItem, indx) => {
+                        <ActivityPagerCard
+                            key={`ActivityPagerCard-${indx}`}
+                        />
+                    })}
+                </ViewPager>
                 {this.state.isLoading &&
                     <ActivityIndicator
                         size='large'  // small
@@ -44,6 +58,9 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: 'center',
         backgroundColor: colors.defaultBgColor,
+    },
+    viewPager: {
+        flex: 1,
     },
     progress: {
         margin: 10,
