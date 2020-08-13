@@ -14,7 +14,7 @@ function WelcomeScreen(props) {
     let type = null;
     DefaultPreference.get(constants.loginToken).then(function (loginToken) {
         console.log('*** My Key token : ' + loginToken);
-        if (loginToken != null) {
+        if (loginTokeb !== undefined && loginToken != null) {
             token = loginToken;
             DefaultPreference.get(constants.loginType).then(function (loginType) {
                 if (loginType != null) {
@@ -29,11 +29,11 @@ function WelcomeScreen(props) {
         }
     });
     console.log('My Key token : ' + JSON.stringify(token));
-    setTimeout(() => {
-        (token == null || type == null) ?
-            props.navigation.navigate("LoginScreen") :
-            props.navigation.navigate("DiscoverScreen");
-    }, constants.welcomeDisplayDuration);
+    // setTimeout(() => {
+    //     (token == null || type == null) ?
+    //         props.navigation.navigate("LoginScreen") :
+    //         props.navigation.navigate("DiscoverScreen");
+    // }, constants.welcomeDisplayDuration);
     return (
         <View style={styles.container}>
             <ImageBackground
@@ -74,6 +74,8 @@ const styles = StyleSheet.create({
     },
     logoImage: {
         bottom: 140,
+        width: 180,
+        height: 35
     },
     linearGradient: {
         flex: 1,
