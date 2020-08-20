@@ -19,8 +19,9 @@ export default class DiscoverScreen extends Component {
     async componentDidMount() {
         try {
             this.setState({ isLoading: true })
-            const activitiesApiCall = await fetch(constants.serverUrl);
+            const activitiesApiCall = await fetch(constants.serverUrl + constants.activitiesListApi);
             const apiResponse = await activitiesApiCall.json();
+            console.log('activitiesApiCall: ' + activitiesApiCall)
             this.setState({ activitiesList: apiResponse.results, isLoading: false });
         } catch (err) {
             console.log("Error occurs while fetching data", err);
@@ -31,15 +32,21 @@ export default class DiscoverScreen extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={styles.container}
+                orientation="horizontal"
+                pageMargin={10}
+                transitionStyle="scroll"
+                showPageIndicator="true" >
                 <Text>Discover Screen</Text>
-                <ViewPager style={styles.viewPager} initialPage={0}>
-                    {this.state.activitiesList.map((actItem, indx) => {
-                        <ActivityPagerCard
-                            key={`ActivityPagerCard-${indx}`}
-                        />
-                    })}
-                </ViewPager>
+                {this.state.activitiesList &&
+                    <ViewPager style={styles.viewPager} initialPage={0}>
+                        {this.state.activitiesList.map((actItem, indx) => {
+                            <ActivityPagerCard
+                                key={`ActivityPagerCard-${indx}`}
+                            />
+                        })}
+                    </ViewPager>
+                }
                 {this.state.isLoading &&
                     <ActivityIndicator
                         size='large'  // small
@@ -47,7 +54,7 @@ export default class DiscoverScreen extends Component {
                         animating={true}
                         color={colors.loadingSpinnerColor} />
                 }
-            </View>
+            </ View>
         );
     };
 }

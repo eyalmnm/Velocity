@@ -10,5 +10,6 @@ export default {
     googleIosClientId: 'XXXXXXXXX',
 
     // Discover Screen Constants
-    serverUrl: 'XXXXXXXXX',
+    serverUrl: 'https://velo-api.herokuapp.com/',
+    activitiesListApi: 'main-activity',
 }
